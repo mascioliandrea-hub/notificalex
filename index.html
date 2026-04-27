@@ -18,3 +18,88 @@
 body{font-family:'Source Serif 4',Georgia,serif;background:#1a6fa8;min-height:100vh;display:flex;justify-content:center;}
 .phone{width:100%;max-width:430px;min-height:100vh;background:var(--cream);display:flex;flex-direction:column;}
 .header{background:linear-gradient(135deg,#1a6fa8 0%,#0e4d7a 100%);padding:48px 24px 28px;color:#fff}
+.header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border-radius:20px;padding:4px 12px;margin-bottom:12px}
+.header-badge span{font-family:'DM Mono',monospace;font-size:10px;color:#e0f4ff;letter-spacing:1.5px;text-transform:uppercase}
+.header h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;line-height:1.1}
+.header h1 em{color:#7dd3fc;font-style:normal}
+.header p{font-size:12px;color:rgba(255,255,255,.7);margin-top:6px;font-family:'DM Mono',monospace}
+
+.tabs{display:flex;background:#0e4d7a;padding:8px;gap:4px}
+.tab{flex:1;padding:10px;border:none;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.7);background:transparent;cursor:pointer}
+.tab.active{background:#7dd3fc;color:#0e4d7a}
+
+.content{flex:1;padding:20px 16px;overflow-y:auto}
+.section{display:none}
+.section.active{display:block}
+.card{background:#fff;border-radius:var(--r);border:1px solid var(--border);padding:16px;margin-bottom:14px}
+.btn{width:100%;padding:15px;border:none;border-radius:10px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;cursor:pointer}
+.btn-gold{background:#1a6fa8;color:#fff}
+.btn-rust{background:#b04a2f;color:#fff}
+</style>
+</head>
+
+<body>
+<div class="phone">
+
+<div class="header">
+  <div class="header-badge"><span>⚖ NotificaLex</span></div>
+  <h1>Calcolo <em>Termini</em><br>di Notifica</h1>
+  <p>c.p.c. · c.p.p. · L. 890/1982 · d.lgs. 149/2022</p>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="sw('civile')">Civile</button>
+  <button class="tab" onclick="sw('penale')">Penale</button>
+  <button class="tab" onclick="sw('info')">Norme</button>
+  <button class="tab" onclick="sw('storico')">Storico</button>
+</div>
+
+<div class="content">
+  <div class="section active" id="sec-civile">
+    <div class="card">
+      <p><strong>Notifiche civili</strong></p>
+      <p>Interfaccia funzionante correttamente ✅</p>
+      <button class="btn btn-gold" onclick="alert('UI OK')">Test UI</button>
+    </div>
+  </div>
+
+  <div class="section" id="sec-penale">
+    <div class="card">
+      <p><strong>Notifiche penali</strong></p>
+    </div>
+  </div>
+
+  <div class="section" id="sec-info">
+    <div class="card">
+      <p>Riferimenti normativi</p>
+    </div>
+  </div>
+
+  <div class="section" id="sec-storico">
+    <div class="card">
+      <p>Nessun calcolo effettuato</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function sw(n){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+n).classList.add('active');
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js");
+  });
+}
+</script>
+
+</body>
+</html>
