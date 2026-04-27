@@ -1,0 +1,9 @@
+{
+  "name": "NotificaLex",
+  "short_name": "NotificaLex",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1a6fa8",
+  "theme_color": "#1a6fa8",
+  "icons": []
+}
